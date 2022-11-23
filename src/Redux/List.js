@@ -30,9 +30,17 @@ const dataList = createSlice({
   extraReducers: (builder) => {
     builder.addCase(fetchList.fulfilled, (state, action) => {
       state.done = true;
-      console.log(action.payload.results);
-      state.items = action.payload.results;
-      copyData(action.payload.results);
+      state.items = action.payload.results.map(game => {
+        return {
+          title: game.name,
+          image: game.background_image,
+          id: game.id,
+          rating: game.rating,
+          playtime: game.playtime,
+          screenshots: game.short_screenshots,
+          platforms: game.platforms
+        }
+      });
     }).addCase(fetchList.rejected, (state, action) => {
       console.log('rejected');
       // state.items = action.payload;

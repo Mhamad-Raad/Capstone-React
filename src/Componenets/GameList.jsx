@@ -4,13 +4,11 @@ export default function GameList() {
   const done = useSelector(state => state.data.done);
   const list = useSelector(state => state.data.items);
 
-  console.log(list);
-
   return (
     <div>
       {done ? (
         list.map((item) => {
-          return <div> {item.name}</div>;
+          return <div key={item.id}> {item.title}</div>;
         })
       ) : (
           <div>Loading...</div>
