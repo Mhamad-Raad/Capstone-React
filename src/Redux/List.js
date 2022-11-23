@@ -12,7 +12,7 @@ export const fetchList = createAsyncThunk("list/fetchList", async () => {
   return await fetch(
     "https://rawg-video-games-database.p.rapidapi.com/games?key=990a19f68f4c42f381d58fbeba2f814e",
     options
-  )
+  ).then((res) => res.json());
 
 });
 
@@ -29,12 +29,15 @@ const dataList = createSlice({
   },
   extraReducers: (builder) => {
     builder.addCase(fetchList.fulfilled, (state, action) => {
-      console.log(action.payload);
-      // state.items = action.payload;
+      state.done = true;
+      console.log(action.payload.results);
+      state.items = action.payload.results;
+      copyData(action.payload.results);
     }).addCase(fetchList.rejected, (state, action) => {
       console.log('rejected');
       // state.items = action.payload;
     }).addCase(fetchList.pending, (state, action) => {
+      state.done = false;
       console.log('pending');
       // state.items = action.payload;
     })
