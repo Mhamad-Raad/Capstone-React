@@ -72,7 +72,7 @@
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Demo](https://playful-basbousa-09955b.netlify.app/Games)
+- [Demo](https://playful-basbousa-09955b.netlify.app/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
