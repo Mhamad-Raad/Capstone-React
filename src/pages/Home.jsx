@@ -13,6 +13,8 @@ export default function Home({ games, Done }) {
   );
 }
 
+//test
+
 Home.propTypes = {
   games: PropTypes.arrayOf(PropTypes.object).isRequired,
   Done: PropTypes.bool.isRequired,
