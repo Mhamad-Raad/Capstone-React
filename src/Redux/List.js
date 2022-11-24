@@ -41,6 +41,31 @@ const dataList = createSlice({
           platforms: game.platforms
         }
       });
+      state.favorites = action.payload.results.filter(game => {
+        if (game.id === 58175 || game.id === 32) {
+          return true;
+        }
+      });
+      state.favorites = state.favorites.map(game => {
+        return {
+          title: game.name,
+          image: game.background_image,
+          id: game.id,
+          rating: game.rating,
+          playtime: game.playtime,
+          screenshots: game.short_screenshots,
+          platforms: game.platforms
+        }
+      });
+      const findgame1Index = action.payload.results.findIndex(
+        (game) => game.id === 58175
+      );
+      const findgame2Index = action.payload.results.findIndex(
+        (game) => game.id === 32
+      );
+      state.items.splice(findgame1Index, 1);
+      state.items.splice(findgame2Index, 1);
+      
     }).addCase(fetchList.rejected, (state, action) => {
       console.log('rejected');
       // state.items = action.payload;

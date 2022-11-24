@@ -8,9 +8,8 @@ export default function Home() {
 
   const done = useSelector((state) => state.data.done);
   const list = useSelector((state) => state.data.items);
+  const favorites = useSelector((state) => state.data.favorites);
   const [filteredArr, setfilter] = useState([]);
-
-  console.log(done);
 
   useEffect(() => {
     setfilter([...list]);
@@ -25,7 +24,7 @@ export default function Home() {
   return (
     <>
       <AppBar inputSearchHandler={searchHandler} />
-      <GameList Games={filteredArr} Done={done} />
+      <GameList Games={filteredArr} favorites={favorites} Done={done} />
     </>
   )
 }

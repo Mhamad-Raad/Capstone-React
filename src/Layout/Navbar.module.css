@@ -9,7 +9,9 @@
   justify-content: space-between;
   align-items: center;
   padding: 15 15px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);  
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+  position: fixed;
+  top: 0;
 }
 
 .logo {
