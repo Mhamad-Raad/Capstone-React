@@ -7,12 +7,7 @@ export default function GameList({ Done, Games, favorites }) {
 
   const navigationHandler = (game) => {
     navigate('/Games/' + game.id, {
-      state: {
-        game: { ...game },
-        games: {
-          ...Games,
-        }
-      }
+      state: { ...game },
     });
   };
 
