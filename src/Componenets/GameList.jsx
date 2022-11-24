@@ -9,6 +9,9 @@ export default function GameList({ Done, Games, favorites }) {
     navigate('/Games/' + game.id, {state: {...game}});
   };
 
+  console.log('asdasdf')
+
+  console.log(Games);
   return (
     <>
       {Done ? (
