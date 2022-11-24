@@ -61,10 +61,8 @@ const dataList = createSlice({
       state.items.splice(findgame1Index, 1);
       state.items.splice(findgame2Index, 1);
     }).addCase(fetchList.rejected, () => {
-      // console.log('rejected');
     }).addCase(fetchList.pending, (state) => {
       state.done = false;
-      // console.log('pending');
     });
   },
 });
