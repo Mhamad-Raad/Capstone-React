@@ -4,7 +4,7 @@ import css from "./Details.module.css";
 export default function Details() {
   const location = useLocation();
 
-  const game = location.state;
+  const game = location.state.game;
 
   return (
     <div className={css.details_bg}>
@@ -15,7 +15,7 @@ export default function Details() {
       <div className={css.details}>
         <div className={css.sub_section}>
           <h3 className={css.sub_title}>Rating</h3>
-          <p className={css.sub_text}>{game.rating}/5</p>
+          <p className={css.sub_text}>{game.rating} / 5</p>
         </div>
         <div className={css.sub_section}>
           <h3 className={css.sub_title}>Playtime</h3>

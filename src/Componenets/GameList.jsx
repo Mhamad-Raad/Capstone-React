@@ -4,9 +4,16 @@ import { useNavigate } from "react-router-dom";
 
 export default function GameList({ Done, Games, favorites }) {
   const navigate = useNavigate();
-  
+
   const navigationHandler = (game) => {
-    navigate('/Games/' + game.id, {state: {...game}});
+    navigate('/Games/' + game.id, {
+      state: {
+        game: { ...game },
+        games: {
+          ...Games,
+        }
+      }
+    });
   };
 
   return (
@@ -18,7 +25,11 @@ export default function GameList({ Done, Games, favorites }) {
           </div>
           <div className={css.fgames}>
             {favorites.map((game) => (
-              <GameItem game={game} key={game.id} />
+              <GameItem
+                game={game}
+                key={game.id}
+                clickHandler={() => navigationHandler(game)}
+              />
             ))}
           </div>
         </>
