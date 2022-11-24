@@ -20,7 +20,11 @@
     "import/no-unresolved": "off",
     "no-shadow": "off",
     "no-param-reassign": "off",
-    "import/extensions": "off"
+    "import/extensions": "off",
+    "no-unused-vars":"off",
+    "jsx-a11y/no-static-element-interactions":"off",
+    "react/forbid-prop-types": "off",
+    "jsx-a11y/click-events-have-key-events": "off"
   },
   "ignorePatterns": [
     "dist/",

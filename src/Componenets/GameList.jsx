@@ -1,12 +1,14 @@
-import css from "./GameList.module.css";
-import GameItem from "./GameItem";
-import { useNavigate } from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
+
+import css from './GameList.module.css';
+import GameItem from './GameItem';
 
 export default function GameList({ Done, Games, favorites }) {
   const navigate = useNavigate();
 
   const navigationHandler = (game) => {
-    navigate('/Games/' + game.id, {
+    navigate(`/Games/${game.id}`, {
       state: { ...game },
     });
   };
@@ -34,15 +36,13 @@ export default function GameList({ Done, Games, favorites }) {
           <h2 className={css.category_title}>Famous Games</h2>
         </div>
         {Done ? (
-          Games.map((item) => {
-            return (
-              <GameItem
-                key={item.id}
-                game={item}
-                clickHandler={() => navigationHandler(item)}
-              />
-            );
-          })
+          Games.map((item) => (
+            <GameItem
+              key={item.id}
+              game={item}
+              clickHandler={() => navigationHandler(item)}
+            />
+          ))
         ) : (
           <div>Loading...</div>
         )}
@@ -50,3 +50,9 @@ export default function GameList({ Done, Games, favorites }) {
     </>
   );
 }
+
+GameList.propTypes = {
+  Done: PropTypes.bool.isRequired,
+  Games: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
+};

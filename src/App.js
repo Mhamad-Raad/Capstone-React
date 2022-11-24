@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchList } from "./Redux/List";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { fetchList } from './Redux/List';
 
-import Details from "./pages/Details";
-import Home from "./pages/Home";
-import AppBar from "./Layout/Navbar";
+import Details from './pages/Details';
+import Home from './pages/Home';
+import AppBar from './Layout/Navbar';
 
 function App() {
-
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchList());
@@ -17,9 +16,7 @@ function App() {
   const done = useSelector((state) => state.data.done);
   const list = useSelector((state) => state.data.items);
 
-
   const [filteredArr, setfilter] = useState([]);
-
 
   useEffect(() => {
     setfilter([...list]);
