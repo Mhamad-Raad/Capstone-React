@@ -1,31 +1,58 @@
-import { useSelector } from "react-redux";
-import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
-export default function GameList() {
-  const done = useSelector((state) => state.data.done);
-  const list = useSelector((state) => state.data.items);
-  const [filteredArr, setfilter] = useState([]);
+import css from './GameList.module.css';
+import GameItem from './GameItem';
 
-  useEffect(() => {
-    setfilter([...list]);
-  }, [list]);
+export default function GameList({ Done, Games, favorites }) {
+  const navigate = useNavigate();
 
-  const searchHandler = (e) => {
-    const search = e.target.value;
-    const copy = list.filter(item => item.title.includes(search));
-    setfilter(copy);
+  const navigationHandler = (game) => {
+    navigate(`/Games/${game.id}`, {
+      state: { ...game },
+    });
   };
 
   return (
-    <div>
-      <input type="text" onChange={searchHandler} />
-      {done ? (
-        filteredArr.map((item) => {
-          return <div key={item.id}> {item.title}</div>;
-        })
-      ) : (
-        <div>Loading...</div>
-      )}
-    </div>
+    <>
+      {Done ? (
+        <>
+          <div className={css.fcategory}>
+            <h2 className={css.category_title}>Personal Favorites</h2>
+          </div>
+          <div className={css.fgames}>
+            {favorites.map((game) => (
+              <GameItem
+                game={game}
+                key={game.id}
+                clickHandler={() => navigationHandler(game)}
+              />
+            ))}
+          </div>
+        </>
+      ) : null}
+      <div className={css.games}>
+        <div className={css.category}>
+          <h2 className={css.category_title}>Famous Games</h2>
+        </div>
+        {Done ? (
+          Games.map((item) => (
+            <GameItem
+              key={item.id}
+              game={item}
+              clickHandler={() => navigationHandler(item)}
+            />
+          ))
+        ) : (
+          <div>Loading...</div>
+        )}
+      </div>
+    </>
   );
 }
+
+GameList.propTypes = {
+  Done: PropTypes.bool.isRequired,
+  Games: PropTypes.array.isRequired,
+  favorites: PropTypes.array.isRequired,
+};
