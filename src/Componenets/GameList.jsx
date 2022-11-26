@@ -51,8 +51,13 @@ export default function GameList({ Done, Games, favorites }) {
   );
 }
 
+GameList.defaultProps = {
+  favorites: [],
+  Done: false,
+};
+
 GameList.propTypes = {
-  Done: PropTypes.bool.isRequired,
+  Done: PropTypes.bool,
   Games: PropTypes.array.isRequired,
-  favorites: PropTypes.array.isRequired,
+  favorites: PropTypes.array,
 };

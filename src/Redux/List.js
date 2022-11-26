@@ -37,6 +37,7 @@ const dataList = createSlice({
         screenshots: game.short_screenshots,
         platforms: game.platforms,
       }));
+
       state.favorites = action.payload.results.filter((game) => {
         if (game.id === 58175 || game.id === 32) {
           return true;
@@ -59,7 +60,7 @@ const dataList = createSlice({
         (game) => game.id === 32,
       );
       state.items.splice(findgame1Index, 1);
-      state.items.splice(findgame2Index, 1);
+      state.items.splice(findgame2Index - 1, 1);
     }).addCase(fetchList.rejected, () => {
     }).addCase(fetchList.pending, (state) => {
       state.done = false;
