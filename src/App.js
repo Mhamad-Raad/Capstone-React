@@ -1,11 +1,11 @@
-import { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Navigate, Route, Routes } from "react-router-dom";
-import { fetchList } from "./Redux/List";
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Navigate, Route, Routes } from 'react-router-dom';
+import { fetchList } from './Redux/List';
 
-import Details from "./pages/Details";
-import Home from "./pages/Home";
-import AppBar from "./Layout/Navbar";
+import Details from './pages/Details';
+import Home from './pages/Home';
+import AppBar from './Layout/Navbar';
 
 function App() {
   const dispatch = useDispatch();
@@ -24,9 +24,7 @@ function App() {
 
   const searchHandler = (e) => {
     const search = e.target.value;
-    const copy = list.filter((item) =>
-      item.title.toLowerCase().includes(search.toLowerCase())
-    );
+    const copy = list.filter((item) => item.title.toLowerCase().includes(search.toLowerCase()));
     setfilter(copy);
   };
 
