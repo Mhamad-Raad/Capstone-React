@@ -3,7 +3,10 @@ import css from './GameItem.module.css';
 
 export default function GameItem({ game, clickHandler }) {
   return (
-    <div className={css.game} onClick={clickHandler}>
+    <div
+      className={`${css.game} ${game.id === 58175 ? css.special : ''}`}
+      onClick={clickHandler}
+    >
       <img src={game.image} className={css.game_img} alt={game.title} />
       <div className={css.game_title_bg}>
         <h2 className={css.game_title}>{game.title}</h2>

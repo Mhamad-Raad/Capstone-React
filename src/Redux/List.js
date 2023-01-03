@@ -26,45 +26,78 @@ const dataList = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(fetchList.fulfilled, (state, action) => {
-      state.done = true;
-      state.items = action.payload.results.map((game) => ({
-        title: game.name,
-        image: game.background_image,
-        id: game.id,
-        rating: game.rating,
-        playtime: game.playtime,
-        screenshots: game.short_screenshots,
-        platforms: game.platforms,
-      }));
+    builder
+      .addCase(fetchList.fulfilled, (state, action) => {
+        state.done = true;
+        state.items = action.payload.results.map((game) => ({
+          title: game.name,
+          image: game.background_image,
+          id: game.id,
+          rating: game.rating,
+          playtime: game.playtime,
+          screenshots: game.short_screenshots,
+          platforms: game.platforms,
+        }));
 
-      state.favorites = action.payload.results.filter((game) => {
-        if (game.id === 58175 || game.id === 32) {
-          return true;
-        }
-        return false;
+        state.favorites = action.payload.results.filter((game) => {
+          if (game.id === 58175 || game.id === 32) {
+            return true;
+          }
+          return false;
+        });
+        state.favorites = state.favorites.map((game) => ({
+          title: game.name,
+          image: game.background_image,
+          id: game.id,
+          rating: game.rating,
+          playtime: game.playtime,
+          screenshots: game.short_screenshots,
+          platforms: game.platforms,
+        }));
+        console.log(state.favorites);
+        state.favorites.push({
+          title: 'Apex Legends',
+          image:
+            'https://gamingbolt.com/wp-content/uploads/2022/02/apex-legends.jpg',
+          id: 1000001,
+          rating: 4.5,
+          playtime: 0,
+          screenshots: [
+            {
+              images: '',
+            },
+            {
+              images: '',
+            },
+            {
+              images: '',
+            },
+          ],
+          platforms: [
+            {
+              name: 'PC',
+            },
+            {
+              name: 'Xbox One',
+            },
+            {
+              name: 'Playstation 4',
+            },
+          ],
+        });
+        const findgame1Index = action.payload.results.findIndex(
+          (game) => game.id === 58175,
+        );
+        const findgame2Index = action.payload.results.findIndex(
+          (game) => game.id === 32,
+        );
+        state.items.splice(findgame1Index, 1);
+        state.items.splice(findgame2Index - 1, 1);
+      })
+      .addCase(fetchList.rejected, () => {})
+      .addCase(fetchList.pending, (state) => {
+        state.done = false;
       });
-      state.favorites = state.favorites.map((game) => ({
-        title: game.name,
-        image: game.background_image,
-        id: game.id,
-        rating: game.rating,
-        playtime: game.playtime,
-        screenshots: game.short_screenshots,
-        platforms: game.platforms,
-      }));
-      const findgame1Index = action.payload.results.findIndex(
-        (game) => game.id === 58175,
-      );
-      const findgame2Index = action.payload.results.findIndex(
-        (game) => game.id === 32,
-      );
-      state.items.splice(findgame1Index, 1);
-      state.items.splice(findgame2Index - 1, 1);
-    }).addCase(fetchList.rejected, () => {
-    }).addCase(fetchList.pending, (state) => {
-      state.done = false;
-    });
   },
 });
 
